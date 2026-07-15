@@ -1,0 +1,50 @@
+﻿@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --primary: #0F4C81;
+  --secondary: #2D6A4F;
+  --accent: #E9C46A;
+  --background: #F8F7F4;
+  --dark: #111827;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(248, 233, 184, 0.15), transparent 30%), #F8F7F4;
+  color: var(--dark);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(15, 76, 129, 0.15);
+}
+
+.leaflet-container {
+  border-radius: 1.5rem;
+}
+
+.custom-route-marker {
+  background: #0F4C81;
+  border: 3px solid #E9C46A;
+  border-radius: 9999px;
+  width: 20px;
+  height: 20px;
+  box-shadow: 0 0 0 4px rgba(15, 76, 129, 0.14);
+}
