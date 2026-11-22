@@ -17,9 +17,31 @@ export function buildRouteDetailPath(slug: string): string {
   return `/routes/${encodeURIComponent(slug.trim())}`;
 }
 
+export function normalizeRoutePath(pathname: string): string {
+  const trimmed = pathname.trim().replace(/\/+$/, "");
+  return trimmed.startsWith("/") ? trimmed || "/" : `/${trimmed}`;
+}
+
+export function extractRouteSlug(pathname: string): string | null {
+  const normalized = normalizeRoutePath(pathname);
+  const prefix = `${APP_ROUTES.ROUTES}/`;
+  if (!normalized.startsWith(prefix)) {
+    return null;
+  }
+  const rawSlug = normalized.slice(prefix.length).split("/")[0];
+  if (!rawSlug) {
+    return null;
+  }
+  try {
+    return decodeURIComponent(rawSlug);
+  } catch {
+    return rawSlug;
+  }
+}
+
 export function isRouteActive(currentPathname: string, targetRoute: string): boolean {
-  const normalizedCurrent = currentPathname.replace(/\/+$/, "") || "/";
-  const normalizedTarget = targetRoute.replace(/\/+$/, "") || "/";
+  const normalizedCurrent = normalizeRoutePath(currentPathname);
+  const normalizedTarget = normalizeRoutePath(targetRoute);
   if (normalizedTarget === APP_ROUTES.HOME) {
     return normalizedCurrent === APP_ROUTES.HOME;
   }
