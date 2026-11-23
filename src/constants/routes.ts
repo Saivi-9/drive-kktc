@@ -51,3 +51,22 @@ export function isRouteActive(currentPathname: string, targetRoute: string): boo
   );
 }
 
+export function buildRoutePathWithQuery(
+  basePath: string,
+  params?: Record<string, string | number | boolean | null | undefined>,
+): string {
+  const normalizedBase = normalizeRoutePath(basePath);
+  if (!params) {
+    return normalizedBase;
+  }
+  const searchParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== null && String(value).trim() !== "") {
+      searchParams.set(key, String(value).trim());
+    }
+  }
+  const queryString = searchParams.toString();
+  return queryString ? `${normalizedBase}?${queryString}` : normalizedBase;
+}
+
+
