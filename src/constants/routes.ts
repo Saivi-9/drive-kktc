@@ -69,4 +69,10 @@ export function buildRoutePathWithQuery(
   return queryString ? `${normalizedBase}?${queryString}` : normalizedBase;
 }
 
+export function isRouteDetailPath(pathname: string): boolean {
+  const slug = extractRouteSlug(pathname);
+  return slug !== null && slug.trim().length > 0;
+}
+
+
 
