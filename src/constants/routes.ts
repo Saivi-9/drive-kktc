@@ -74,5 +74,18 @@ export function isRouteDetailPath(pathname: string): boolean {
   return slug !== null && slug.trim().length > 0;
 }
 
+const STATIC_APP_ROUTES: ReadonlySet<string> = new Set([
+  APP_ROUTES.HOME,
+  APP_ROUTES.ROUTES,
+  APP_ROUTES.ABOUT,
+  APP_ROUTES.EXPLORE,
+  APP_ROUTES.CONTACT,
+]);
+
+export function isKnownStaticRoute(pathname: string): boolean {
+  return STATIC_APP_ROUTES.has(normalizeRoutePath(pathname));
+}
+
+
 
 
