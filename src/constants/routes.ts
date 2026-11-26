@@ -86,6 +86,10 @@ export function isKnownStaticRoute(pathname: string): boolean {
   return STATIC_APP_ROUTES.has(normalizeRoutePath(pathname));
 }
 
+export function isValidAppRoute(pathname: string): boolean {
+  return isKnownStaticRoute(pathname) || isRouteDetailPath(pathname);
+}
+
 
 
 
