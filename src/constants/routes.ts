@@ -90,6 +90,14 @@ export function isValidAppRoute(pathname: string): boolean {
   return isKnownStaticRoute(pathname) || isRouteDetailPath(pathname);
 }
 
+export function getParentRoutePath(pathname: string): AppRoutePath {
+  if (isRouteDetailPath(pathname)) {
+    return APP_ROUTES.ROUTES;
+  }
+  return APP_ROUTES.HOME;
+}
+
+
 
 
 
